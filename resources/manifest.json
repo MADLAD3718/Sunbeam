@@ -1,0 +1,21 @@
+{
+	"format_version": 2,
+	"metadata": { "authors": ["MADLAD3718"] },
+	"header": {
+		"name": "Sunbeam",
+		"description": "An addon reimplimenting sunlight-based mechanics in minecraft with respect to properly shadowed sunlight.",
+		"uuid": "810d72b2-546f-468f-ad3c-b481e1a95244",
+		"pack_scope": "world",
+		"version": [0,0,1],
+		"min_engine_version": [1,21,30]
+	},
+	"modules": [{
+		"type": "resources",
+		"uuid": "6c1a8d06-b045-4403-975c-37d71c85bb16",
+		"version": [1,0,0]
+	}],
+	"dependencies": [{
+		"version": [0,0,1],
+		"uuid": "e337c359-557c-4b79-b397-70fee6a9fe52"
+	}]
+}

@@ -1,0 +1,5 @@
+*.mcworld
+*.mcaddon
+node_modules
+.vscode
+behaviours/scripts
