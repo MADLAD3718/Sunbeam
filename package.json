@@ -2,8 +2,8 @@
   "name": "sunbeam",
   "version": "1.0.0",
   "description": "An addon reimplimenting sunlight-based mechanics in minecraft with respect to properly shadowed sunlight.",
-  "main": "src/main.ts",
-  "module": "src/main.ts",
+  "main": "scripts/main.ts",
+  "module": "scripts/main.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

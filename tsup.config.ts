@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig({
     format: ["esm"],
-    entry: ["./src/main.ts"],
+    entry: ["./scripts/main.ts"],
     skipNodeModulesBundle: true,
     clean: true,
     outDir: "./behaviours/scripts",
