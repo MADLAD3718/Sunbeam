@@ -1,11 +1,12 @@
-import { ScriptEventCommandMessageAfterEvent, world } from "@minecraft/server";
+import { Player, ScriptEventCommandMessageAfterEvent } from "@minecraft/server";
 import { directionToSun } from "./sundirection";
 import { Vec3 } from "@madlad3718/mcvec3";
 
 export function scriptEventHandler(event: ScriptEventCommandMessageAfterEvent) {
+    const player = event.sourceEntity as Player | undefined;
     switch (event.id) { 
         case "sunbeam:dts":
-            world.sendMessage(`Direction to Sun: {${Vec3.toString(directionToSun())}}`);
+            player?.sendMessage(`Direction to Sun: {${Vec3.toString(directionToSun())}}`);
             break;
     }
 }

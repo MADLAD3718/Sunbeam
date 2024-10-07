@@ -1,5 +1,5 @@
-import { Mat3, Vec3, Vector3 } from "@madlad3718/mcvec3";
-import { world } from "@minecraft/server";
+import { Vector3, world } from "@minecraft/server";
+import { Mat3, Vec3 } from "@madlad3718/mcvec3";
 
 const ZENITH_ANGLE = Math.PI / 4;
 
