@@ -10,5 +10,6 @@ export default defineConfig({
         "@madlad3718/mcvec3",
         "@bedrock-oss/bedrock-boost"
     ],
+    minify: true,
     sourcemap: true
 });

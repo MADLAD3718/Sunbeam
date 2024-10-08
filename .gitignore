@@ -1,5 +1,6 @@
-*.mcworld
+*.mcpack
 *.mcaddon
-node_modules
+*.mcworld
 .vscode
+node_modules
 behaviours/scripts
