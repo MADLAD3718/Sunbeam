@@ -5,7 +5,7 @@
 		"name": "Sunbeam",
 		"description": "An addon reimplimenting sunlight-based mechanics in minecraft with respect to properly shadowed sunlight.",
 		"uuid": "e337c359-557c-4b79-b397-70fee6a9fe52",
-		"version": [0,0,1],
+		"version": [1,0,0],
 		"min_engine_version": [1,21,30]
 	},
 	"modules": [
@@ -19,7 +19,7 @@
 			"type": "script",
 			"language": "javascript",
 			"uuid": "bbafe525-c35e-4e21-aba7-5a8a63f46ac7",
-			"version": [0,0,1],
+			"version": [1,0,0],
 			"entry": "scripts/main.js"
 		}
 	],

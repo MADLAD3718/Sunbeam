@@ -24,7 +24,8 @@ const HELMETIDS = [
     "minecraft:golden_helmet",
     "minecraft:diamond_helmet",
     "minecraft:netherite_helmet",
-    "minecraft:turtle_helmet"
+    "minecraft:turtle_helmet",
+    "minecraft:chainmail_helmet"
 ]
 
 export function hasHelmet(entity: Entity): boolean {
