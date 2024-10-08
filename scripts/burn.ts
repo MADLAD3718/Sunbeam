@@ -1,6 +1,6 @@
 import { Entity, EntityComponentTypes, MinecraftDimensionTypes, WeatherType, world } from "@minecraft/server";
+import { getCurrentWeather, hasHelmet } from "./util";
 import { directionToSun } from "./sundirection";
-import { getCurrentWeather } from "./util";
 
 const overworld = world.getDimension(MinecraftDimensionTypes.overworld);
 
@@ -23,6 +23,7 @@ export function* sunlightBurn() {
         const {dimension, location} = entity;
         if (dimension.getBlock(location)?.typeId === "minecraft:water") continue;
         if (isOnFire(entity)) continue;
+        if (hasHelmet(entity)) continue;
         if (isInSunlight(entity))
             entity.setOnFire(8, true);
         yield;
