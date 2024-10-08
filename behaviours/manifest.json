@@ -3,7 +3,7 @@
 	"metadata": { "authors": ["MADLAD3718"] },
 	"header": {
 		"name": "Sunbeam",
-		"description": "An addon reimplimenting sunlight-based mechanics in minecraft with respect to properly shadowed sunlight.",
+		"description": "An addon reimplimenting sunlight-based mechanics in minecraft with respect to properly shadowed sunlight. BetterRTX is required for this addon!",
 		"uuid": "e337c359-557c-4b79-b397-70fee6a9fe52",
 		"version": [1,0,0],
 		"min_engine_version": [1,21,30]
