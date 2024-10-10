@@ -23,6 +23,29 @@
 			"entry": "scripts/main.js"
 		}
 	],
+	"subpacks": [
+		{
+			"folder_name": "infectious",
+			"memory_tier": 0,
+			"name": "Infectious"
+		},
+		{
+			"folder_name": "interstellar",
+			"memory_tier": 0,
+			"name": "Interstellar"
+		},
+		{
+			"folder_name": "default",
+			"memory_tier": 0,
+			"name": "Default"
+		}
+	],
+	"settings": [
+        {
+            "type": "label",
+            "text": "Configure the setting to the corresponding BetterRTX preset you wish to use the addon with."
+        }
+	],
 	"dependencies": [
 		{
 			"module_name": "@minecraft/server",

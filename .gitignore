@@ -1,6 +1,6 @@
+*.map
 *.mcpack
 *.mcaddon
 *.mcworld
 .vscode
 node_modules
-behaviours/scripts

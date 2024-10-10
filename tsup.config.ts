@@ -5,7 +5,7 @@ export default defineConfig({
     entry: ["./scripts/main.ts"],
     skipNodeModulesBundle: true,
     clean: true,
-    outDir: "./behaviours/scripts",
+    outDir: "./behaviours/subpacks/default/scripts",
     noExternal: [
         "@madlad3718/mcvec3",
         "@bedrock-oss/bedrock-boost"
