@@ -1,14 +1,15 @@
-import { Entity, EntityComponentTypes, MinecraftDimensionTypes, WeatherType, world } from "@minecraft/server";
+import { BlockRaycastOptions, Entity, EntityComponentTypes, MinecraftDimensionTypes, WeatherType, world } from "@minecraft/server";
 import { getCurrentWeather, hasHelmet } from "./util";
 import { directionToSun } from "./sundirection";
 
 const overworld = world.getDimension(MinecraftDimensionTypes.overworld);
 
 function isInSunlight(entity: Entity): boolean {
-    return overworld.getBlockFromRay(entity.getHeadLocation(), directionToSun(), {
-        includePassableBlocks: true,
-        includeLiquidBlocks: true
-    }) === undefined;
+    const direction = directionToSun();
+    const feet = entity.location, head = entity.getHeadLocation();
+    const options: BlockRaycastOptions = { includeLiquidBlocks: true };
+    return overworld.getBlockFromRay(feet, direction, options) === undefined
+        || overworld.getBlockFromRay(head, direction, options) === undefined;
 }
 
 function isOnFire(entity: Entity): boolean {

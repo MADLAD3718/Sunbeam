@@ -1,24 +1,9 @@
 import { Vector3, world } from "@minecraft/server";
 import { Mat3, Vec3 } from "@madlad3718/mcvec3";
+import { getRotationMatrix } from "./util";
+import { Config } from "./config";
 
-const AZIMUTH_ANGLE = 0;
-const ZENITH_ANGLE = Math.PI / 4;
-
-const cosa = Math.cos(AZIMUTH_ANGLE);
-const sina = Math.sin(AZIMUTH_ANGLE);
-const azimuth = Mat3.from([
-    cosa, 0, sina,
-       0, 1,    0,
-   -sina, 0, cosa,
-]);
-const cosz = Math.cos(ZENITH_ANGLE);
-const sinz = Math.sin(ZENITH_ANGLE);
-const zenith = Mat3.from([
-    1,    0,     0,
-    0, cosz, -sinz,
-    0, sinz,  cosz,
-]);
-const rotation = Mat3.mul(azimuth, zenith);
+const rotation = getRotationMatrix(Config.Default);
 
 function clamp(x: number, min: number, max: number) {
     return Math.min(Math.max(x, min), max);
