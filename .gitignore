@@ -2,5 +2,4 @@
 *.mcpack
 *.mcaddon
 *.mcworld
-.vscode
 node_modules

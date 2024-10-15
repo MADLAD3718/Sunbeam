@@ -6,10 +6,10 @@ import { Vec3 } from "@madlad3718/mcvec3";
 const NAMESPACE = "sunbeam";
 
 export function scriptEventHandler(event: ScriptEventCommandMessageAfterEvent) {
-    const player = event.sourceEntity as Player | undefined;
+    const player = event.sourceEntity as Player;
+    let message = "";
     switch (event.id) {
         case `${NAMESPACE}:help`:
-            let message = "";
             switch (event.message) {
                 case "dts":
                     message = `§edts:\nLogs the current direction to sun vector.\n`
@@ -25,13 +25,13 @@ export function scriptEventHandler(event: ScriptEventCommandMessageAfterEvent) {
                             + `/scriptevent ${NAMESPACE}:dts\n`
                             + `/scriptevent ${NAMESPACE}:wt`;
             }
-            player?.sendMessage(message);
             break;
         case `${NAMESPACE}:dts`:
-            player?.sendMessage(`Direction to Sun: {${Vec3.toString(directionToSun())}}`);
+            message = `Direction to Sun: {${Vec3.toString(directionToSun())}}`;
             break;
         case `${NAMESPACE}:wt`:
-            player?.sendMessage(`Get weather result: ${getCurrentWeather()}`);
+            message = `Get weather result: ${getCurrentWeather()}`;
             break;
     }
+    player.sendMessage(message);
 }
