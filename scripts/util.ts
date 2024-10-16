@@ -32,8 +32,8 @@ const HELMETIDS = [
 
 export function hasHelmet(entity: Entity): boolean {
     for (const helmetId of HELMETIDS) {
-        if (entity.runCommand(`testfor @s[hasitem={location=slot.armor.head,item=${helmetId}}]`).successCount == 1)
-            return true;
+        const command = `testfor @s[hasitem={location=slot.armor.head,item=${helmetId}}]`;
+        if (entity.runCommand(command).successCount === 1) return true;
     }
     return false;
 }

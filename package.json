@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@bedrock-oss/bedrock-boost": "^0.1.1",
-    "@madlad3718/mcvec3": "^0.2.1",
+    "@madlad3718/mcvec3": "^0.2.3",
     "@minecraft/server": "^1.14.0"
   }
 }

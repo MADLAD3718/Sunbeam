@@ -20,7 +20,7 @@ export function* sunlightBurn() {
     if ((world.getTimeOfDay() + 540) % 24000 >= 13082) return;
     if (getCurrentWeather() !== WeatherType.Clear) return;
     for (const entity of overworld.getEntities({families: ["burns_in_sunlight"]})) {
-        if (!entity.isValid()) continue;
+        if (!entity || !entity.isValid()) continue;
         if (overworld.getBlock(entity.location)?.typeId === "minecraft:water") continue;
         if (isOnFire(entity)) continue;
         if (hasHelmet(entity)) continue;
