@@ -1,15 +1,41 @@
-import { BlockRaycastOptions, Entity, EntityComponentTypes, MinecraftDimensionTypes, WeatherType, world } from "@minecraft/server";
-import { getCurrentWeather, hasHelmet } from "./util";
+import { Block, BlockRaycastHit, BlockRaycastOptions, Entity, EntityComponentTypes, MinecraftDimensionTypes, Vector3, WeatherType, world } from "@minecraft/server";
+import { getCurrentWeather, hasHelmet, IOR, refractWithTIR } from "./util";
 import { directionToSun } from "./sundirection";
+import { Vec3 } from "@madlad3718/mcvec3";
 
 const overworld = world.getDimension(MinecraftDimensionTypes.overworld);
+
+const EPSILON = 1.0e-5;
+
+function isGlass(block: Block | undefined): boolean {
+    return block?.typeId.includes("glass") ?? false;
+}
+
+function traceShadowRay(origin: Vector3, direction: Vector3, options?: BlockRaycastOptions): BlockRaycastHit | undefined {
+    const hit = overworld.getBlockFromRay(origin, direction, options);
+    if (hit === undefined || !isGlass(hit.block)) return hit;
+
+    const thisMediumIsGlass = isGlass(overworld.getBlock(origin)) ?? false;
+    origin = Vec3.add(hit.block.location, hit.faceLocation, Vec3.mul(direction, EPSILON));
+    const nextMediumIsGlass = isGlass(overworld.getBlock(origin)) ?? false;
+
+    if (!thisMediumIsGlass && nextMediumIsGlass) {
+        const normal = Vec3.fromDirection(hit.face);
+        direction = refractWithTIR(direction, normal, IOR.AIR / IOR.GLASS);
+    } else if (thisMediumIsGlass && !nextMediumIsGlass) {
+        const normal = Vec3.neg(Vec3.fromDirection(hit.face));
+        direction = refractWithTIR(direction, normal, IOR.GLASS / IOR.AIR);
+    } else if (!thisMediumIsGlass && !nextMediumIsGlass) return hit;
+
+    return traceShadowRay(origin, direction, options);
+}
 
 function isInSunlight(entity: Entity): boolean {
     const direction = directionToSun();
     const feet = entity.location, head = entity.getHeadLocation();
     const options: BlockRaycastOptions = { includeLiquidBlocks: true };
-    return overworld.getBlockFromRay(feet, direction, options) === undefined
-        || overworld.getBlockFromRay(head, direction, options) === undefined;
+    return traceShadowRay(feet, direction, options) === undefined
+        || traceShadowRay(head, direction, options) === undefined;
 }
 
 function isOnFire(entity: Entity): boolean {

@@ -1,6 +1,6 @@
-import { Entity, WeatherType, world } from "@minecraft/server";
+import { Entity, Vector3, WeatherType, world } from "@minecraft/server";
+import { Mat3, Matrix3, Vec3 } from "@madlad3718/mcvec3";
 import { jobPromise } from "@bedrock-oss/bedrock-boost";
-import { Mat3, Matrix3 } from "@madlad3718/mcvec3";
 import { SunAngle } from "./config";
 
 export function repeatGenerator(source: () => Generator<undefined, void, unknown>) {
@@ -54,4 +54,18 @@ export function getRotationMatrix(angles: SunAngle): Matrix3 {
         0, sinz,  cosz,
     ]);
     return Mat3.mul(azimuth, zenith);
+}
+
+/** Contains IOR values for various mediums. */
+export const enum IOR {
+    AIR   = 1.000,
+    WATER = 1.333,
+    GLASS = 1.500
+};
+
+export function refractWithTIR(i: Vector3, n: Vector3, e: number): Vector3 {
+    const cost = Vec3.dot(i, Vec3.neg(n))
+    if (cost * cost < 1 - 1 / (e * e))
+        return Vec3.reflect(i, n);
+    else return Vec3.refract(i, n, e);
 }

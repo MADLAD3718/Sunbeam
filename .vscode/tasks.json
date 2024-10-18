@@ -9,7 +9,7 @@
 				"isDefault": true
 			},
 			"problemMatcher": [],
-			"label": "npm: build",
+			"label": "build",
 			"detail": "tsup"
 		}
 	]

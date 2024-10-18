@@ -15,21 +15,21 @@ export function scriptEventHandler(event: ScriptEventCommandMessageAfterEvent) {
                     message = `§edts:\nLogs the current direction to sun vector.\n`
                             + `§rUsage:\n - /scriptevent ${NAMESPACE}:dts`;
                     break;
-                case "wt":
-                        message = `§ewt:\nLogs the currently stored weather value.\n`
-                                + `§rUsage:\n - /scriptevent ${NAMESPACE}:wt`;
+                case "wet":
+                        message = `§ewet:\nLogs the currently stored weather value.\n`
+                                + `§rUsage:\n - /scriptevent ${NAMESPACE}:wet`;
                         break;
                 default:
                     message = `§2--- Showing help page 1 of 1 ---\n`
                             + `§r/scriptevent ${NAMESPACE}:help [command: CommandName]\n`
                             + `/scriptevent ${NAMESPACE}:dts\n`
-                            + `/scriptevent ${NAMESPACE}:wt`;
+                            + `/scriptevent ${NAMESPACE}:wet`;
             }
             break;
         case `${NAMESPACE}:dts`:
             message = `Direction to Sun: {${Vec3.toString(directionToSun())}}`;
             break;
-        case `${NAMESPACE}:wt`:
+        case `${NAMESPACE}:wet`:
             message = `Get weather result: ${getCurrentWeather()}`;
             break;
     }
