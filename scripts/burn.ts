@@ -47,7 +47,7 @@ export function* sunlightBurn() {
     if (getCurrentWeather() !== WeatherType.Clear) return;
     for (const entity of overworld.getEntities({families: ["burns_in_sunlight"]})) {
         if (!entity || !entity.isValid()) continue;
-        if (overworld.getBlock(entity.location)?.typeId === "minecraft:water") continue;
+        if (entity.isInWater) continue;
         if (isOnFire(entity)) continue;
         if (hasHelmet(entity)) continue;
         if (isInSunlight(entity))
