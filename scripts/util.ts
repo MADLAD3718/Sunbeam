@@ -63,9 +63,15 @@ export const enum IOR {
     GLASS = 1.500
 };
 
+/**
+ * Returns a refraction or reflection vector depending on if total internal reflection occurs.
+ * @param i An incident direction vector.
+ * @param n A surface normal vector.
+ * @param e The ratio of refractive indices between the incident medium and the refracting medium.
+ * @returns The resultant direction that light takes after transferring between two mediums.
+ */
 export function refractWithTIR(i: Vector3, n: Vector3, e: number): Vector3 {
-    const cost = Vec3.dot(i, Vec3.neg(n))
-    if (cost * cost < 1 - 1 / (e * e))
-        return Vec3.reflect(i, n);
-    else return Vec3.refract(i, n, e);
+    const cosi = Vec3.dot(i, Vec3.neg(n));
+    const TIR = e * e * (1 - cosi * cosi) > 1;
+    return TIR ? Vec3.reflect(i, n) : Vec3.refract(i, n, e);
 }

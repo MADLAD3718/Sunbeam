@@ -5,7 +5,7 @@ import { Vec3 } from "@madlad3718/mcvec3";
 
 const overworld = world.getDimension(MinecraftDimensionTypes.overworld);
 
-const EPSILON = 1.0e-5;
+const EPSILON = 1.0e-3;
 
 function isGlass(block: Block | undefined): boolean {
     return block?.typeId.includes("glass") ?? false;
@@ -30,12 +30,10 @@ function traceShadowRay(origin: Vector3, direction: Vector3, options?: BlockRayc
     return traceShadowRay(origin, direction, options);
 }
 
-function isInSunlight(entity: Entity): boolean {
+function isInSunlight(location: Vector3): boolean {
     const direction = directionToSun();
-    const feet = entity.location, head = entity.getHeadLocation();
     const options: BlockRaycastOptions = { includeLiquidBlocks: true };
-    return traceShadowRay(feet, direction, options) === undefined
-        || traceShadowRay(head, direction, options) === undefined;
+    return traceShadowRay(location, direction, options) === undefined;
 }
 
 function isOnFire(entity: Entity): boolean {
@@ -50,8 +48,8 @@ export function* sunlightBurn() {
         if (entity.isInWater) continue;
         if (isOnFire(entity)) continue;
         if (hasHelmet(entity)) continue;
-        if (isInSunlight(entity))
-            entity.setOnFire(8, true);
+        const feet = entity.location, head = entity.getHeadLocation();
+        if (isInSunlight(feet) || isInSunlight(head)) entity.setOnFire(8, true);
         yield;
     }
     return;
