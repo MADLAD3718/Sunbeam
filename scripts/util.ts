@@ -1,5 +1,5 @@
 import { Entity, Vector3, WeatherType, world } from "@minecraft/server";
-import { Mat3, Matrix3, Vec3 } from "@madlad3718/mcvec3";
+import { Mat3, Matrix3, Vec3 } from "@madlad3718/mcveclib";
 import { jobPromise } from "@bedrock-oss/bedrock-boost";
 import { SunAngle } from "./config";
 
@@ -10,7 +10,6 @@ export function repeatGenerator(source: () => Generator<undefined, void, unknown
 const WEATHER_PROPERTY = "sunbeam:weather";
 
 world.afterEvents.weatherChange.subscribe(event => {
-    if (event.dimension !== "overworld") return;
     world.setDynamicProperty(WEATHER_PROPERTY, event.newWeather);
 });
 

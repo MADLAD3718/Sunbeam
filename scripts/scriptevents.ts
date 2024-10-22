@@ -1,7 +1,7 @@
 import { Player, ScriptEventCommandMessageAfterEvent } from "@minecraft/server";
 import { directionToSun } from "./sundirection";
+import { Vec3 } from "@madlad3718/mcveclib";
 import { getCurrentWeather } from "./util";
-import { Vec3 } from "@madlad3718/mcvec3";
 
 const NAMESPACE = "sunbeam";
 

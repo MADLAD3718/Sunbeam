@@ -1,7 +1,7 @@
 import { Block, BlockRaycastHit, BlockRaycastOptions, Entity, EntityComponentTypes, MinecraftDimensionTypes, Vector3, WeatherType, world } from "@minecraft/server";
 import { getCurrentWeather, hasHelmet, IOR, refractWithTIR } from "./util";
 import { directionToSun } from "./sundirection";
-import { Vec3 } from "@madlad3718/mcvec3";
+import { Vec3 } from "@madlad3718/mcveclib";
 
 const overworld = world.getDimension(MinecraftDimensionTypes.overworld);
 

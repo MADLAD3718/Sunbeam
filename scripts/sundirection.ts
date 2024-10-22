@@ -1,11 +1,11 @@
 import { Vector3, world } from "@minecraft/server";
-import { Mat3, Vec3 } from "@madlad3718/mcvec3";
+import { Mat3, Vec3 } from "@madlad3718/mcveclib";
 import { getRotationMatrix } from "./util";
 import { Config } from "./config";
 
 const rotation = getRotationMatrix(Config.Default);
 
-function clamp(x: number, min: number, max: number) {
+function clamp(x: number, min: number, max: number): number {
     return Math.min(Math.max(x, min), max);
 }
 
