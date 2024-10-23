@@ -1,4 +1,4 @@
-import { Block, BlockRaycastHit, BlockRaycastOptions, Entity, EntityComponentTypes, MinecraftDimensionTypes, Vector3, WeatherType, world } from "@minecraft/server";
+import { Block, BlockRaycastHit, BlockRaycastOptions, Entity, EntityComponentTypes, EntityInitializationCause, MinecraftDimensionTypes, Vector3, WeatherType, world } from "@minecraft/server";
 import { getCurrentWeather, hasHelmet, IOR, refractWithTIR } from "./util";
 import { directionToSun } from "./sundirection";
 import { Vec3 } from "@madlad3718/mcveclib";
@@ -15,9 +15,14 @@ function traceShadowRay(origin: Vector3, direction: Vector3, options?: BlockRayc
     const hit = overworld.getBlockFromRay(origin, direction, options);
     if (hit === undefined || !isGlass(hit.block)) return hit;
 
-    const thisMediumIsGlass = isGlass(overworld.getBlock(origin)) ?? false;
+    let thisBlock: Block | undefined;
+    try { thisBlock = overworld.getBlock(origin); } catch {};
+    const thisMediumIsGlass = isGlass(thisBlock);
+
     origin = Vec3.add(hit.block.location, hit.faceLocation, Vec3.mul(direction, EPSILON));
-    const nextMediumIsGlass = isGlass(overworld.getBlock(origin)) ?? false;
+    let nextBlock: Block | undefined;
+    try { nextBlock = overworld.getBlock(origin); } catch {};
+    const nextMediumIsGlass = isGlass(nextBlock);
 
     if (!thisMediumIsGlass && nextMediumIsGlass) {
         const normal = Vec3.fromDirection(hit.face);
@@ -43,7 +48,7 @@ function isOnFire(entity: Entity): boolean {
 export function* sunlightBurn() {
     if ((world.getTimeOfDay() + 540) % 24000 >= 13082) return;
     if (getCurrentWeather() !== WeatherType.Clear) return;
-    for (const entity of overworld.getEntities({families: ["burns_in_sunlight"]})) {
+    for (const entity of overworld.getEntities({families: ["sunbeam_burn"]})) {
         if (!entity || !entity.isValid()) continue;
         if (entity.isInWater) continue;
         if (isOnFire(entity)) continue;
@@ -54,3 +59,14 @@ export function* sunlightBurn() {
     }
     return;
 }
+
+world.afterEvents.entitySpawn.subscribe(event => {
+    if ((world.getTimeOfDay() + 540) % 24000 >= 13082) return;
+
+    const {cause, entity} = event;
+    if (cause !== EntityInitializationCause.Spawned) return;
+    if (!entity.matches({families: ["sunbeam_burn"]})) return;
+
+    const feet = entity.location, head = entity.getHeadLocation();
+    if (isInSunlight(feet) || isInSunlight(head)) entity.remove();
+});

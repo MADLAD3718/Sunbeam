@@ -196,7 +196,7 @@
         "height": 1.9
       },
       "minecraft:type_family": {
-        "family": [ "skeleton", "undead", "monster", "mob", "burns_in_sunlight" ]
+        "family": [ "skeleton", "undead", "monster", "mob", "sunbeam_burn" ]
       },
       "minecraft:breathable": {
         "total_supply": 15,

@@ -7,7 +7,7 @@ export default defineConfig({
     clean: true,
     outDir: "./behaviours/subpacks/default/scripts",
     noExternal: [
-        "@madlad3718/mcvec3",
+        "@madlad3718/mcveclib",
         "@bedrock-oss/bedrock-boost"
     ],
     minify: true,

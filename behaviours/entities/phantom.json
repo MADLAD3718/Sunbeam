@@ -20,7 +20,7 @@
         "on_death": "query.last_hit_by_player ? 5 : 0"
       },
       "minecraft:type_family": {
-        "family": [ "phantom", "undead", "monster", "mob", "burns_in_sunlight" ]
+        "family": [ "phantom", "undead", "monster", "mob", "sunbeam_burn" ]
       },
       "minecraft:loot": {
         "table": "loot_tables/entities/phantom.json"

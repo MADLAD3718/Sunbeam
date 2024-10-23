@@ -134,7 +134,7 @@
 
       // Zombie Components
       "minecraft:type_family": {
-        "family": [ "drowned", "zombie", "undead", "monster", "mob", "burns_in_sunlight" ]
+        "family": [ "drowned", "zombie", "undead", "monster", "mob", "sunbeam_burn" ]
       },
       "minecraft:equip_item": {
         "excluded_items": [

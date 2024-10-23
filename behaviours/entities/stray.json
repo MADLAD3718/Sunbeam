@@ -492,7 +492,7 @@
         "priority": 8
       },
       "minecraft:type_family": {
-        "family": [ "stray", "skeleton", "monster", "mob", "undead", "burns_in_sunlight" ]
+        "family": [ "stray", "skeleton", "monster", "mob", "undead", "sunbeam_burn" ]
       },
       "minecraft:physics": {
       },
